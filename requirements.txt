@@ -1,0 +1,9 @@
+groq
+langgraph
+tree-sitter
+tree-sitter-python
+pytest
+python-dotenv
+mlx-lm
+huggingface_hub
+datasets

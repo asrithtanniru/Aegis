@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Secrets
+.env
+
+# Aegis symbol index cache (regenerated automatically)
+.aegis_index.sqlite3
+test_repo/.aegis_index.sqlite3
+
+# Fine-tuned / converted model weights (multi-GB, regenerate via finetune/train.sh)
+finetune/models/
+finetune/adapters/
+
+
+.DS_Store
+.claude/
