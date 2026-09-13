@@ -1,0 +1,127 @@
+/* Color tokens — defined once here, referenced by name everywhere else.
+   Step 1: just the chat log + input, no new layout beyond that. */
+
+$bg: #0d1117;
+$agent: #d29922;
+$pending: #d29922;
+$pass: #3fb950;
+$fail: #f85149;
+$muted: #8b949e;
+$diff-removed-bg: #3d1a1a;
+$diff-added-bg: #1a3d1a;
+$branch-1: #bc8cff;
+$branch-2: #ffa657;
+$branch-3: #39c5cf;
+
+Screen {
+    background: $bg;
+}
+
+#main {
+    height: 100%;
+}
+
+#chat-log {
+    background: $bg;
+    color: $muted;
+    border: none;
+    padding: 1 2;
+    height: 1fr;
+}
+
+#chat-log .message {
+    height: auto;
+    margin-bottom: 1;
+}
+
+#loading {
+    height: 1;
+    width: 3;
+    color: $muted;
+}
+
+/* Input + footer share one docked wrapper (see compose()'s comment for
+   why: docking each separately overlapped them). */
+
+#bottom-bar {
+    dock: bottom;
+    height: auto;
+}
+
+#user-input {
+    background: $bg;
+    border: none;
+    border-top: solid $agent;
+    border-bottom: solid $agent;
+}
+
+#user-input > .input--cursor {
+    background: $agent;
+}
+
+/* Placeholder ("Ask Aegis...") stays the normal disabled-text color —
+   deliberately not touched, so only the border/cursor pick up $agent. */
+
+/* Persistent footer — location left, model right. No border of its own —
+   #user-input's border-bottom directly above already serves as the one
+   divider line; adding another here would just be a redundant second
+   line right below the first. Padding keeps the text off the edges. */
+
+#status-bar {
+    height: auto;
+    background: $bg;
+    color: $muted;
+    padding: 0 2;
+}
+
+#status-cwd {
+    width: 1fr;
+}
+
+#status-model {
+    width: auto;
+    text-align: right;
+    color: $agent;
+}
+
+/* Inline permission prompt — mounted directly in the conversation flow,
+   Claude-Code style, not a centered popup. Lives here, not in a
+   widget-level DEFAULT_CSS, so it can see the $variables declared above. */
+
+#permission-prompt {
+    height: auto;
+    border: round $pending;
+    background: $bg;
+    padding: 0 1;
+    margin: 0 1;
+}
+
+#permission-title {
+    color: $pending;
+    text-style: bold;
+}
+
+#permission-detail {
+    color: $muted;
+}
+
+#permission-options {
+    margin-top: 1;
+}
+
+#permission-countdown {
+    color: $muted;
+}
+
+/* Collapsed-by-default tool-call summaries — restrained, no borders; the
+   colored icon (green/red on completion) carries the meaning instead. */
+
+.tool-call {
+    background: $bg;
+    height: auto;
+}
+
+#tc-body {
+    margin-left: 2;
+    margin-top: 1;
+}

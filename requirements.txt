@@ -7,3 +7,4 @@ python-dotenv
 mlx-lm
 huggingface_hub
 datasets
+textual
