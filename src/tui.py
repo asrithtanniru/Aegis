@@ -32,6 +32,7 @@ from textual.widgets import Input, LoadingIndicator, Static
 from src.graph import build_graph
 from src.models import DEFAULT_MODEL
 from src.permissions import set_ask_backend
+from src.splash import build_splash
 
 SYSTEM_PROMPT = (
     "You are Aegis, a coding agent. You can read files, list files, look up "
@@ -318,8 +319,12 @@ class AegisApp(App):
                     yield Static(f"model: {DEFAULT_MODEL}", id="status-model")
 
     def on_mount(self) -> None:
-        self.append_message(f"Aegis ready. Working directory: {os.getcwd()}")
-        self.append_message("Type 'exit' or 'quit' to stop.")
+        # Splash-only startup, lavalamp-style: no welcome text — the
+        # footer already shows cwd/model, and the input's own placeholder
+        # covers usage, so nothing else competes with the art for attention.
+        chat_log = self.query_one("#chat-log", VerticalScroll)
+        splash = Static(Text(build_splash(), style=AGENT_STYLE), classes="message splash")
+        chat_log.mount(splash)
         self.query_one("#user-input", Input).focus()
 
     def on_input_submitted(self, event: Input.Submitted) -> None:

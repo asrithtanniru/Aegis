@@ -34,6 +34,12 @@ Screen {
     margin-bottom: 1;
 }
 
+.splash {
+    width: 100%;
+    content-align: center middle;
+    margin-bottom: 1;
+}
+
 #loading {
     height: 1;
     width: 3;
